@@ -1,0 +1,101 @@
+/* Global reset and styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Main content styling */
+.content {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 50px;
+    font-weight: 600;
+    color: #333;
+    font-size: 32px;
+}
+
+/* Styling for the anchor (link) buttons */
+.links {
+    display: inline-block;
+}
+
+.links a {
+    display: inline-block;
+    margin: 20px;
+    padding: 15px 30px;
+    text-decoration: none;
+    color: white;
+    background-color: #007BFF;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.links a:hover {
+    background-color: #0056b3;
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background-color: #333;
+    color: #f4f4f4;
+}
+
+.dark-mode a {
+    background-color: #555;
+}
+
+.dark-mode a:hover {
+    background-color: #444;
+}
+
+/* Dark mode button styling */
+.theme-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    width: 40px;
+    height: 40px;
+    transition: opacity 0.3s ease;
+}
+
+.theme-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+.theme-icon:hover {
+    opacity: 0.7;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    .links a {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
+}
+/* Mobile responsiveness */

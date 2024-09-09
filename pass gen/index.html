@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robust Password Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+        }
+        input[type="password"], input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .password-container {
+            position: relative;
+        }
+        .password-container input[type="password"] {
+            padding-right: 40px;
+        }
+        .toggle-eye {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .strength {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .generate-btn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+        }
+        .generate-btn:hover {
+            background-color: #218838;
+        }
+        .weak {
+            color: red;
+        }
+        .medium {
+            color: orange;
+        }
+        .strong {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Password Strength Checker</h2>
+
+        <!-- Password Strength Checker with Show/Hide Option -->
+        <div class="password-container">
+            <input type="password" id="password" placeholder="Enter your password" oninput="checkPasswordStrength()">
+            <span class="toggle-eye" onclick="togglePasswordVisibility()">👁️</span>
+        </div>
+        <div id="strength" class="strength"></div>
+
+        <!-- Password Generator -->
+        <h2>Password Generator</h2>
+        <label><input type="checkbox" id="includeEmoji"> Include Emojis</label>
+        <button class="generate-btn" onclick="generatePassword()">Generate Password</button>
+        <input type="text" id="generatedPassword" readonly>
+
+        <!-- Password Guidelines -->
+        <h2>Password Guidelines</h2>
+        <ul>
+            <li>At least 8 characters</li>
+            <li>Contains uppercase and lowercase letters</li>
+            <li>Includes numbers</li>
+            <li>Has special characters (e.g., !, @, #, $, %)</li>
+            <li>Can include emojis for extra fun and complexity</li>
+        </ul>
+    </div>
+
+    <script>
+        // Function to check the strength of the password
+        function checkPasswordStrength() {
+            var password = document.getElementById("password").value;
+            var strengthText = document.getElementById("strength");
+            var strength = 0;
+
+            if (password.length >= 8) strength++; // At least 8 characters
+            if (/[A-Z]/.test(password)) strength++; // Uppercase letter
+            if (/[a-z]/.test(password)) strength++; // Lowercase letter
+            if (/[0-9]/.test(password)) strength++; // Contains numbers
+            if (/[\W_]/.test(password)) strength++; // Special characters
+            if (/[\u{1F600}-\u{1F64F}]/u.test(password)) strength++; // Emojis
+
+            // Display strength feedback
+            if (strength < 3) {
+                strengthText.innerHTML = "Weak Password";
+                strengthText.className = "strength weak";
+            } else if (strength === 3 || strength === 4) {
+                strengthText.innerHTML = "Medium Strength";
+                strengthText.className = "strength medium";
+            } else if (strength >= 5) {
+                strengthText.innerHTML = "Strong Password";
+                strengthText.className = "strength strong";
+            }
+        }
+
+        // Function to toggle password visibility
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            var eyeIcon = document.querySelector(".toggle-eye");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                eyeIcon.innerHTML = "🙈"; // Change icon to closed eye
+            } else {
+                passwordField.type = "password";
+                eyeIcon.innerHTML = "👁️"; // Change icon to open eye
+            }
+        }
+
+        // Function to generate a random password
+        function generatePassword() {
+            var length = 12; // Default password length
+            var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+            var emojiSet = "😀😂😍🥳🤔🙃😎😇";
+            var password = "";
+            var includeEmoji = document.getElementById("includeEmoji").checked;
+
+            if (includeEmoji) charset += emojiSet;
+
+            for (var i = 0; i < length; i++) {
+                var randomIndex = Math.floor(Math.random() * charset.length);
+                password += charset[randomIndex];
+            }
+            document.getElementById("generatedPassword").value = password;
+        }
+    </script>
+</body>
+</html>
