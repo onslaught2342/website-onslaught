@@ -7,7 +7,7 @@ on:
 
 jobs:
   ftp-deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -21,8 +21,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /htdocs/
         local-dir: ./
-        exclude: '.git/,.github/,.gitignore,.github/*'
-
+    
     - name: Deploy.htaccess to FTP Server
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
@@ -31,4 +30,6 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /
         local-dir: ./
-        exclude: '**/*,!*.htaccess,.git/,.github/,.gitignore,.github/*'
+        exclude: |
+          **/*
+          !*.htaccess
