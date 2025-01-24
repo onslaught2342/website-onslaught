@@ -27,7 +27,7 @@ jobs:
       if: steps.upload-check.outcome == 'success'
       run: rm -rf ./draw.io/
 
-    - name: Deploy to FTP Server
+    - name: Deploy Files to FTP Server
       if: steps.upload-check.outcome == 'success'
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
@@ -36,3 +36,13 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /htdocs/
         local-dir: ./
+
+    - name: Deploy Htaccess to FTP Server
+      if: steps.upload-check.outcome == 'success'
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: ftpupload.net
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: /
+        local-dir: .htaccess
