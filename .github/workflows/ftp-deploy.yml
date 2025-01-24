@@ -3,7 +3,7 @@ name: Deploy to FTP Server
 on:
   push:
     branches:
-      - master
+      - master  # Change this to 'main' if you use 'main' as your default branch
 
 jobs:
   ftp-deploy:
@@ -19,5 +19,5 @@ jobs:
         server: ftpupload.net
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /htdocs
-        local-dir: ./ 
+        server-dir: /htdocs/  # Make sure to add the trailing slash here
+        local-dir: ./  # Assuming your code is in the root folder of the repo
