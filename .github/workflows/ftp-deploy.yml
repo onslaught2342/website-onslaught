@@ -20,7 +20,7 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /htdocs/
-        local-dir: ./  # Make sure this is pointing to the root directory of your repo
+        local-dir: ./
 
     - name: Deploy .htaccess to FTP Server
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
@@ -28,7 +28,7 @@ jobs:
         server: ftpupload.net
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /  # This should be the root directory where your .htaccess file should go
-        local-dir: ./  # Assuming .htaccess is in the root of your repo
-        exclude: '**/*'  # Exclude all files
-        include: '.htaccess'  # Only include .htaccess file
+        server-dir: /
+        local-dir: ./
+        exclude: '**/*'
+        include: '.htaccess'
