@@ -29,7 +29,7 @@ jobs:
           'node_modules/*'
           '*.log'
         overwrite: true
-        cleanup: false
+        cleanup: true
         dry-run: false
 
     - name: Deploy .htaccess to FTP Server
