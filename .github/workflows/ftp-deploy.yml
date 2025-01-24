@@ -13,22 +13,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Check if upload should proceed
-      id: upload-check
-      run: |
-        if [[ "${{ secrets.UPLOAD_ALL_FILES }}" != "True" ]]; then
-          echo "UPLOAD_ALL_FILES is not True. Skipping FTP upload."
-          exit 0  # Exit the job early if the secret is not 'True'
-        else
-          echo "UPLOAD_ALL_FILES is True. Proceeding with upload."
-        fi
-
-    - name: Remove folder to skip
-      if: steps.upload-check.outcome == 'success'
-      run: rm -rf ./draw.io/
-
     - name: Deploy Files to FTP Server
-      if: steps.upload-check.outcome == 'success'
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: ftpupload.net
@@ -36,13 +21,21 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /htdocs/
         local-dir: ./
+        exclude: './draw.io/*'
+        overwrite: true
+        cleanup: false
+        dry-run: false
 
-    - name: Deploy Htaccess to FTP Server
-      if: steps.upload-check.outcome == 'success'
+    - name: Deploy .htaccess to FTP Server
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: ftpupload.net
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /
-        local-dir: .htaccess
+        local-dir: ./
+        exclude: '**/*'
+        include: '.htaccess'
+        overwrite: true
+        cleanup: false
+        dry-run: false
