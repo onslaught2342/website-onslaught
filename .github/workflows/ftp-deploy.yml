@@ -21,11 +21,8 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /htdocs/
         local-dir: ./  # Make sure this is pointing to the root directory of your repo
-        exclude: 'node_modules/**,**/dist/**,**/build/**,**.git/**'  # Excluding unwanted folders
-        include: '*'  # Including all other files
         overwrite: true  # Overwrite files if needed
-        cleanup: false  # Disable cleanup unless you want to remove old files
-        dry-run: false  # Set to false to actually deploy
+        cleanup: true  # Disable cleanup unless you want to remove old files
 
     - name: Deploy .htaccess to FTP Server
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
@@ -39,4 +36,4 @@ jobs:
         include: '.htaccess'  # Only include .htaccess file
         overwrite: true  # Overwrite .htaccess if needed
         cleanup: false  # Disable cleanup for .htaccess file deployment
-        dry-run: false  # Set to false to actually deploy
+        dry-run: true  # Set to false to actually deploy
