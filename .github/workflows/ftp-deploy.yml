@@ -3,7 +3,7 @@ name: Deploy to FTP Server
 on:
   push:
     branches:
-      - master  # Change this to 'main' if you use 'main' as your default branch
+      - master
 
 jobs:
   ftp-deploy:
@@ -13,11 +13,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Remove folder to skip
+      run: rm -rf ./draw.io/
+
     - name: Deploy to FTP Server
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: ftpupload.net
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /htdocs/  # Make sure to add the trailing slash here
-        local-dir: ./  # Assuming your code is in the root folder of the repo
+        server-dir: /htdocs/
+        local-dir: ./
