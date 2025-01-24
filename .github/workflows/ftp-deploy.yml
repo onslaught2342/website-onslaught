@@ -21,7 +21,13 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /htdocs/
         local-dir: ./
-        exclude: './draw.io/*'
+        exclude: |
+          './draw.io/*'
+          '.git/*'
+          '.gitignore'
+          '.env'
+          'node_modules/*'
+          '*.log'
         overwrite: true
         cleanup: false
         dry-run: false
