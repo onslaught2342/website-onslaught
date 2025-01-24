@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+        
+    <header class="header">
+        <div class="logo-container">
+            <img src="/resources-website-my-code/images/onslaught.png" alt="Onslaught Image" class="logo-image">
+            <img id="theme-icon" src="https://img.icons8.com/material-outlined/24/000000/sun.png" alt="Toggle Theme" class="theme-icon">
+        </div>
+    </header>
+    <div class="container">
+        <h1>Finance Tracker</h1>
+        <form id="salary-form">
+            <label for="salary">Salary:</label>
+            <input type="number" id="salary" required>
+            <button type="submit">Set Salary</button>
+        </form>
+        <form id="expense-form">
+            <label for="expense-item">Expense Item:</label>
+            <input type="text" id="expense-item" required>
+            <label for="expense">Amount:</label>
+            <input type="number" id="expense" required>
+            <label for="receipt">Receipt:</label>
+            <input type="file" id="receipt" accept="image/*">
+            <button type="submit">Add Expense</button>
+        </form>
+        <div class="summary">
+            <p id="total-expenses">Total Expenses: $0.00</p>
+            <p id="remaining-balance">Remaining Balance: $0.00</p>
+        </div>
+        <ul id="expense-list"></ul>
+        <button id="export-json">Export JSON</button>
+        <button id="export-csv">Export CSV</button>
+        <button id="export-yaml">Export YAML</button>
+        <button id="clear-data">Clear Data</button>
+        <button id="import-json">Import JSON</button>
+    </div>
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+    <input type="file" id="import-json-input" accept=".json" style="display:none;">
+    <script src="script.js"></script>
+</body>
+</html>

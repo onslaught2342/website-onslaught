@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Note Taking App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+        
+    <header class="header">
+        <div class="logo-container">
+            <img src="/resources-website-my-code/images/onslaught.png" alt="Onslaught Image" class="logo-image">
+            <h1>Note Taking App</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <input type="text" id="note-title" placeholder="Note Title" required>
+        <div id="editor" style="height: 200px;"></div>
+
+        <div class="settings">
+            <button id="save-note">Save Note</button>
+        </div>
+
+        <ul id="note-list"></ul>
+
+        <button id="export-json">Export Notes</button>
+        <button id="import-notes-button">Import Notes</button>
+        <input type="file" id="import-json-input" accept=".json" style="display:none;">
+        <button id="clear-data">Clear All Notes</button>
+    </div>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="script.js"></script>
+    <script src="dark.js"></script>
+</body>
+</html>

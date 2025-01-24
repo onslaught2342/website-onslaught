@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/resources-website-my-code/scripts/dark.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <a href="/">
+                <img src="/resources-website-my-code/images/onslaught.png" alt="Onslaught Image" class="logo-image">
+            </a>
+            <h1>Password Generator</h1>
+        </div>
+        <img id="theme-icon" src="https://img.icons8.com/material-outlined/24/000000/sun.png" alt="Toggle Theme" class="theme-icon">
+    </header>
+
+    <div class="container">
+        <h2>Password Strength Checker</h2>
+        <div class="password-container">
+            <input type="password" id="password" placeholder="Enter your password" oninput="checkPasswordStrength()">
+            <span class="toggle-eye" onclick="togglePasswordVisibility()">
+                <svg id="eyeIconOpen" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="eye-icon">
+                    <path d="M12 4.5C7.8 4.5 4.2 7.5 2.7 12c1.5 4.5 5.3 7.5 9.3 7.5s7.8-3 9.3-7.5C19.8 7.5 16.2 4.5 12 4.5zM12 16.5c-2.4 0-4.5-2.1-4.5-4.5S9.6 7.5 12 7.5 16.5 9.6 16.5 12 14.4 16.5 12 16.5z"/>
+                </svg>
+                <svg id="eyeIconClosed" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="eye-icon hidden">
+                    <path d="M12 6.5c-5.1 0-9.3 3.9-10.6 9.4-.4 1.5.1 3.1 1.2 4.2l-1.1 1.1 1.4 1.4 1.1-1.1c1.1 1.1 2.7 1.6 4.3 1.6 4.6 0 8.4-3.6 9.6-8.5l-1.5-1.5c-.8 2.8-3 4.9-5.7 4.9-2.1 0-3.9-1.7-3.9-3.9s1.7-3.9 3.9-3.9c1.7 0 3.2.8 4 2 .1.3.2.5.2.8 1.1-1.8 3.3-5.3 5.6-9.2 5.6-.8 0-1.6-.2-2.3-.5-.2-.1-.3-.2-.5-.3-.2-.2-.4-.4-.6-.6-.5-.5-.6-1.1-.8-1.7-.4-.3-.9-.6-1.4-.6zM12 8.5c-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5-1.1-2.5-2.5-2.5z"/>
+                </svg>
+            </span>
+        </div>
+        <div id="strength" class="strength"></div>
+
+        <h2>Password Generator</h2>
+        <div class="slider-container">
+            <span class="slider-label">Length:</span>
+            <input type="range" id="lengthSlider" min="8" max="256" value="12" oninput="updateLengthLabel()">
+            <span id="lengthLabel">12</span>
+        </div>
+        <label><input type="checkbox" id="includeLowercase" checked> Lowercase</label>
+        <label><input type="checkbox" id="includeUppercase" checked> Uppercase</label>
+        <label><input type="checkbox" id="includeNumbers" checked> Numbers</label>
+        <label><input type="checkbox" id="includeSpecial" checked> Special</label>
+        <button class="generate-btn" onclick="generatePassword()">Generate</button>
+        <input type="text" id="generatedPassword" readonly>
+
+        <h2>Password Guidelines</h2>
+        <ul>
+            <li>At least 8 characters</li>
+            <li>Uppercase and lowercase letters</li>
+            <li>Numbers</li>
+            <li>Special characters</li>
+        </ul>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="/resources-website-my-code/scripts/dark.js"></script>
+</body>
+</html>

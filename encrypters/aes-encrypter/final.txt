@@ -1,0 +1,178 @@
+Please review and improve the following code to make it more professional. The files to be considered are index.html, styles.css, and script.js. try to make it towards a dark theme.
+
+--- index.html ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES Encryption Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>AES Encryption Tool</h1>
+        <div class="form-section" id="encryptSection">
+            <h2>Encrypt File</h2>
+            <input type="file" id="fileInput" accept="*/*" />
+            <input type="password" id="encryptKey" placeholder="Enter encryption key" />
+            <button id="encryptButton">Encrypt</button>
+            <p id="encryptMessage" class="message"></p>
+        </div>
+
+        <div class="form-section" id="decryptSection">
+            <h2>Decrypt File</h2>
+            <input type="file" id="fileInputDecrypt" accept="*/*" />
+            <input type="password" id="decryptKey" placeholder="Enter decryption key" />
+            <button id="decryptButton">Decrypt</button>
+            <p id="decryptMessage" class="message"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+--- styles.css ---
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+input[type="file"], input[type="password"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+.message {
+    text-align: center;
+    color: #d9534f;
+    font-weight: bold;
+}
+
+
+--- script.js ---
+document.getElementById('encryptButton').addEventListener('click', function() {
+    const fileInput = document.getElementById('fileInput');
+    const encryptKey = document.getElementById('encryptKey').value;
+    const messageBox = document.getElementById('encryptMessage');
+    
+    messageBox.innerHTML = "";
+
+    if (fileInput.files.length === 0 || !encryptKey) {
+        messageBox.innerHTML = "Please select a file and enter an encryption key.";
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+    
+    reader.onload = function(event) {
+        const arrayBuffer = event.target.result;
+        const bytes = new Uint8Array(arrayBuffer);
+        const binaryString = String.fromCharCode(...bytes);
+        const base64String = btoa(binaryString); // Convert to Base64
+        const encrypted = CryptoJS.AES.encrypt(base64String, encryptKey).toString();
+        const blob = new Blob([encrypted], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = file.name + '.enc';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        messageBox.innerHTML = "File encrypted successfully! Download it.";
+    };
+
+    reader.readAsArrayBuffer(file);
+});
+document.getElementById('decryptButton').addEventListener('click', function() {
+    const fileInputDecrypt = document.getElementById('fileInputDecrypt');
+    const decryptKey = document.getElementById('decryptKey').value;
+    const messageBox = document.getElementById('decryptMessage');
+    
+    messageBox.innerHTML = "";
+
+    if (fileInputDecrypt.files.length === 0 || !decryptKey) {
+        messageBox.innerHTML = "Please select an encrypted file and enter the decryption key.";
+        return;
+    }
+
+    const file = fileInputDecrypt.files[0];
+    const reader = new FileReader();
+    
+    reader.onload = function(event) {
+        const encryptedContent = event.target.result;
+        const decrypted = CryptoJS.AES.decrypt(encryptedContent, decryptKey);
+        
+        const base64String = decrypted.toString(CryptoJS.enc.Utf8);
+        if (!base64String) {
+            messageBox.innerHTML = "Decryption failed. Invalid key or corrupted file.";
+            return;
+        }
+
+        const binaryString = atob(base64String);
+        const len = binaryString.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+
+        const blob = new Blob([bytes], { type: 'application/octet-stream' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = file.name.replace('.enc', '');
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        messageBox.innerHTML = "File decrypted successfully! Download it.";
+    };
+
+    reader.readAsText(file);
+});
+
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="/">
+                <img src="/resources-website-my-code/images/onslaught.png" alt="Onslaught Image" class="logo-image">
+            </a>
+            <h1>Test Your Brain</h1>
+        </div>
+    </header>
+    <div class="quiz-container">
+        <header>
+            <h1>Interactive Quiz</h1>
+            <button id="dark-mode-toggle">Toggle Dark Mode</button>
+        </header>
+        <main>
+            <div id="loading" class="loading">Loading...</div>
+            <div id="question-container" style="display: none;"></div>
+            <div class="controls" style="display: none;">
+                <button id="action-btn">Next Question</button>
+                <button id="redo-btn" style="display: none;">Redo Quiz</button>
+            </div>
+            <div id="result-container" style="display: none;"></div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Pokemon Selector featuring the original 150 Pokemon" content="">
+
+  <title>Pokemon Index</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <div class="body"></div>
+  <header class="header">
+    <h1 class="h1">Pokemon Index</h1>
+  </header>
+  <section class="sectionSearchBar">
+    <form class="searchContainer" autocomplete="off">
+      <div class="searchWrapper">
+        <input class="input searchInput" type="text" name="pokemonSearch" placeholder="Pokemon">
+      </div>
+      <input class="input searchSubmit" type="submit" value="Search">
+    </form>
+  </section>
+  <section class="sectionContainer">
+    <section class="column pokemonTitleContainer">
+      <span class="pokemonTitle">Pikachu</span>
+    </section>
+  </section>
+  <section class="sectionContainer">
+    <section class="column leftColumn">
+      <div class="item">
+        <div class="card">
+          <img class="pokemon-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg" alt="pikachu" />
+          </div>
+      </div>
+    </section>
+
+    <section class="column">
+        <section class="item statsContainer">
+          <span class="statsLabel">Stats</span>
+          <ul>
+            <li class="li">Type: <span class="stat" id="type">Electric</span></li>
+            <li>HP: <span class="stat" id="hp">35</span></li>
+            <li>Attack: <span class="stat" id="attack">55</span></li>
+            <li>Defense: <span class="stat" id="defense">40</span></li>
+            <li>Height: <span class="stat" id="height">0.4 meters</span></li>
+            <li>Weight: <span class="stat" id="weight">6.0 kilograms</span></li>
+            <li>Abilities: <span class="stat" id="knownAbilities">Static</span></li>
+            <li>Hidden Abilities: <span class="stat" id="hiddenAbilities">Lightning Rod</span></li>
+          </ul>
+        </section>
+    </section>
+  </section>
+  <script type="module" src="js/main.js"></script>
+
+</body>
+    
+ </html>
+

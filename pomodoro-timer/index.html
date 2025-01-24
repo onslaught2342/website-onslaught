@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <img src="/resources-website-my-code/images/onslaught.png" alt="Onslaught Image" class="logo-image">
+            <h1>Pomodoro Timer</h1>
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="timer-circle" id="timer">15:00</div>
+        <div class="control-buttons">
+            <button id="pauseResumeBtn" onclick="togglePauseResume()">Pause</button>
+            <button onclick="restartTimer()">Restart</button>
+            <button onclick="chooseTime()">Choose Time</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Rock Paper Scissors</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-container">
+    <h1>3D Rock, Paper, Scissors</h1>
+    <p>Choose your move and see if you can beat the robot!</p>
+    <div class="hands">
+      <div class="player-hand" id="player-hand"></div>
+      <div class="robot-hand" id="robot-hand"></div>
+    </div>
+    <div class="buttons">
+      <button class="move-btn" onclick="playGame('rock')">✊ Rock</button>
+      <button class="move-btn" onclick="playGame('paper')">🖐️ Paper</button>
+      <button class="move-btn" onclick="playGame('scissors')">✌️ Scissors</button>
+    </div>
+    <div class="result" id="result"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

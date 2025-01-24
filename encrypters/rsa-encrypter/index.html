@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSA Encryption Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.0.0/jsencrypt.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>RSA Encryption Tool</h1>
+
+        <div class="form-section" id="keySection">
+            <h2>Generate RSA Keys</h2>
+            <button id="generateKeysButton">Generate RSA Keys</button>
+            <button id="downloadKeysButton" style="display: none;">Download RSA Keys</button>
+            <p id="keyMessage" class="message"></p>
+        </div>
+
+        <div class="form-section" id="loadKeysSection">
+            <h2>Load RSA Keys from File</h2>
+            <input type="file" id="loadPublicKeyFile" accept=".txt" />
+            <input type="file" id="loadPrivateKeyFile" accept=".txt" />
+            <p class="message">Upload keys as .txt files.</p>
+        </div>
+
+        <div class="form-section" id="passphraseSection">
+            <h2>Set Passphrase for Key Encryption</h2>
+            <input type="password" id="passphrase" placeholder="Enter passphrase (optional)" />
+            <button id="setPassphraseButton">Set Passphrase</button>
+            <p id="passphraseMessage" class="message"></p>
+        </div>
+
+        <div class="form-section" id="encryptSection">
+            <h2>Encrypt File</h2>
+            <input type="file" id="fileInput" />
+            <textarea id="publicKey" placeholder="Paste public key here" rows="4"></textarea>
+            <button id="encryptButton">Encrypt</button>
+            <p id="encryptMessage" class="message"></p>
+        </div>
+
+        <div class="form-section" id="decryptSection">
+            <h2>Decrypt File</h2>
+            <input type="file" id="fileInputDecrypt" />
+            <textarea id="privateKey" placeholder="Paste private key here" rows="4"></textarea>
+            <button id="decryptButton">Decrypt</button>
+            <p id="decryptMessage" class="message"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
